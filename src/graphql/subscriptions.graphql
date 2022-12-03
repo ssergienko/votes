@@ -1,8 +1,30 @@
 # this is an auto generated file. This will be overwritten
+subscription OnCreateRoom($filter: ModelSubscriptionRoomFilterInput) {
+  onCreateRoom(filter: $filter) {
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateRoom($filter: ModelSubscriptionRoomFilterInput) {
+  onUpdateRoom(filter: $filter) {
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteRoom($filter: ModelSubscriptionRoomFilterInput) {
+  onDeleteRoom(filter: $filter) {
+    id
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateQuestion($filter: ModelSubscriptionQuestionFilterInput) {
   onCreateQuestion(filter: $filter) {
     id
     text
+    roomId
     createdAt
     updatedAt
   }
@@ -11,6 +33,7 @@ subscription OnUpdateQuestion($filter: ModelSubscriptionQuestionFilterInput) {
   onUpdateQuestion(filter: $filter) {
     id
     text
+    roomId
     createdAt
     updatedAt
   }
@@ -19,6 +42,7 @@ subscription OnDeleteQuestion($filter: ModelSubscriptionQuestionFilterInput) {
   onDeleteQuestion(filter: $filter) {
     id
     text
+    roomId
     createdAt
     updatedAt
   }
@@ -50,9 +74,9 @@ subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
 subscription OnCreateVote($filter: ModelSubscriptionVoteFilterInput) {
   onCreateVote(filter: $filter) {
     id
-    questionId
     userId
-    vote
+    roomId
+    questionId
     createdAt
     updatedAt
   }
@@ -60,9 +84,9 @@ subscription OnCreateVote($filter: ModelSubscriptionVoteFilterInput) {
 subscription OnUpdateVote($filter: ModelSubscriptionVoteFilterInput) {
   onUpdateVote(filter: $filter) {
     id
-    questionId
     userId
-    vote
+    roomId
+    questionId
     createdAt
     updatedAt
   }
@@ -70,9 +94,9 @@ subscription OnUpdateVote($filter: ModelSubscriptionVoteFilterInput) {
 subscription OnDeleteVote($filter: ModelSubscriptionVoteFilterInput) {
   onDeleteVote(filter: $filter) {
     id
-    questionId
     userId
-    vote
+    roomId
+    questionId
     createdAt
     updatedAt
   }

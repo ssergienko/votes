@@ -1,4 +1,34 @@
 # this is an auto generated file. This will be overwritten
+mutation CreateRoom(
+  $input: CreateRoomInput!
+  $condition: ModelRoomConditionInput
+) {
+  createRoom(input: $input, condition: $condition) {
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateRoom(
+  $input: UpdateRoomInput!
+  $condition: ModelRoomConditionInput
+) {
+  updateRoom(input: $input, condition: $condition) {
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteRoom(
+  $input: DeleteRoomInput!
+  $condition: ModelRoomConditionInput
+) {
+  deleteRoom(input: $input, condition: $condition) {
+    id
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateQuestion(
   $input: CreateQuestionInput!
   $condition: ModelQuestionConditionInput
@@ -6,6 +36,7 @@ mutation CreateQuestion(
   createQuestion(input: $input, condition: $condition) {
     id
     text
+    roomId
     createdAt
     updatedAt
   }
@@ -17,6 +48,7 @@ mutation UpdateQuestion(
   updateQuestion(input: $input, condition: $condition) {
     id
     text
+    roomId
     createdAt
     updatedAt
   }
@@ -28,6 +60,7 @@ mutation DeleteQuestion(
   deleteQuestion(input: $input, condition: $condition) {
     id
     text
+    roomId
     createdAt
     updatedAt
   }
@@ -71,9 +104,9 @@ mutation CreateVote(
 ) {
   createVote(input: $input, condition: $condition) {
     id
-    questionId
     userId
-    vote
+    roomId
+    questionId
     createdAt
     updatedAt
   }
@@ -84,9 +117,9 @@ mutation UpdateVote(
 ) {
   updateVote(input: $input, condition: $condition) {
     id
-    questionId
     userId
-    vote
+    roomId
+    questionId
     createdAt
     updatedAt
   }
@@ -97,9 +130,9 @@ mutation DeleteVote(
 ) {
   deleteVote(input: $input, condition: $condition) {
     id
-    questionId
     userId
-    vote
+    roomId
+    questionId
     createdAt
     updatedAt
   }

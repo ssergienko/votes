@@ -15,8 +15,8 @@ type User @model @auth(rules: [{allow: public}]) {
 
 type Vote @model @auth(rules: [{allow: public}]) {
   id: ID!
+  questionid: ID!
   userId: ID!
   roomId: ID
-  questionId: String
 }
  

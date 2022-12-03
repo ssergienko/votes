@@ -1,8 +1,30 @@
 # this is an auto generated file. This will be overwritten
+query GetRoom($id: ID!) {
+  getRoom(id: $id) {
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListRooms(
+  $filter: ModelRoomFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetQuestion($id: ID!) {
   getQuestion(id: $id) {
     id
     text
+    roomId
     createdAt
     updatedAt
   }
@@ -16,6 +38,7 @@ query ListQuestions(
     items {
       id
       text
+      roomId
       createdAt
       updatedAt
     }
@@ -48,9 +71,9 @@ query ListUsers(
 query GetVote($id: ID!) {
   getVote(id: $id) {
     id
-    questionId
     userId
-    vote
+    roomId
+    questionId
     createdAt
     updatedAt
   }
@@ -63,9 +86,9 @@ query ListVotes(
   listVotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      questionId
       userId
-      vote
+      roomId
+      questionId
       createdAt
       updatedAt
     }

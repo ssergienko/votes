@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { APIService, User } from './API.service';
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-root',
@@ -7,20 +8,15 @@ import { APIService, User } from './API.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'votes';
 
-  public users: Array<User> = [];
-
-  constructor(private api: APIService) {
+  constructor(private api: APIService, private router: Router) {
 
   }
 
   async ngOnInit() {
-    /* fetch users when app loads */
-    this.api.ListUsers().then((event) => {
-      this.users = event.items as User[];
-    });
-    console.log(this.users);
+
   }
+
+
 
 }
