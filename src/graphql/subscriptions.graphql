@@ -1,4 +1,64 @@
 # this is an auto generated file. This will be overwritten
+subscription OnCreateRoomQuestion(
+  $filter: ModelSubscriptionRoomQuestionFilterInput
+) {
+  onCreateRoomQuestion(filter: $filter) {
+    id
+    roomId
+    text
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateRoomQuestion(
+  $filter: ModelSubscriptionRoomQuestionFilterInput
+) {
+  onUpdateRoomQuestion(filter: $filter) {
+    id
+    roomId
+    text
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteRoomQuestion(
+  $filter: ModelSubscriptionRoomQuestionFilterInput
+) {
+  onDeleteRoomQuestion(filter: $filter) {
+    id
+    roomId
+    text
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateRoomUser($filter: ModelSubscriptionRoomUserFilterInput) {
+  onCreateRoomUser(filter: $filter) {
+    id
+    userId
+    roomId
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateRoomUser($filter: ModelSubscriptionRoomUserFilterInput) {
+  onUpdateRoomUser(filter: $filter) {
+    id
+    userId
+    roomId
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteRoomUser($filter: ModelSubscriptionRoomUserFilterInput) {
+  onDeleteRoomUser(filter: $filter) {
+    id
+    userId
+    roomId
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateRoom($filter: ModelSubscriptionRoomFilterInput) {
   onCreateRoom(filter: $filter) {
     id

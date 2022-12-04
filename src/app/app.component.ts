@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { APIService, User } from './API.service';
-import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-root',
@@ -8,15 +6,6 @@ import { Router } from "@angular/router"
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  constructor(private api: APIService, private router: Router) {
-
-  }
-
-  async ngOnInit() {
-
-  }
-
-
-
+  constructor() {}
+  async ngOnInit() {}
 }

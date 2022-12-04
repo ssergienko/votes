@@ -9,6 +9,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { RoomComponent } from './room/room.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,9 @@ import { RoomComponent } from './room/room.component';
     BrowserModule,
     AppRoutingModule,
     AmplifyAuthenticatorModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

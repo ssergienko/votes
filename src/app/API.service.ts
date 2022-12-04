@@ -10,6 +10,12 @@ export interface SubscriptionResponse<T> {
 }
 
 export type __SubscriptionContainer = {
+  onCreateRoomQuestion: OnCreateRoomQuestionSubscription;
+  onUpdateRoomQuestion: OnUpdateRoomQuestionSubscription;
+  onDeleteRoomQuestion: OnDeleteRoomQuestionSubscription;
+  onCreateRoomUser: OnCreateRoomUserSubscription;
+  onUpdateRoomUser: OnUpdateRoomUserSubscription;
+  onDeleteRoomUser: OnDeleteRoomUserSubscription;
   onCreateRoom: OnCreateRoomSubscription;
   onUpdateRoom: OnUpdateRoomSubscription;
   onDeleteRoom: OnDeleteRoomSubscription;
@@ -22,6 +28,127 @@ export type __SubscriptionContainer = {
   onCreateVote: OnCreateVoteSubscription;
   onUpdateVote: OnUpdateVoteSubscription;
   onDeleteVote: OnDeleteVoteSubscription;
+};
+
+export type CreateRoomQuestionInput = {
+  id?: string | null;
+  roomId?: string | null;
+  text?: string | null;
+};
+
+export type ModelRoomQuestionConditionInput = {
+  roomId?: ModelIDInput | null;
+  text?: ModelStringInput | null;
+  and?: Array<ModelRoomQuestionConditionInput | null> | null;
+  or?: Array<ModelRoomQuestionConditionInput | null> | null;
+  not?: ModelRoomQuestionConditionInput | null;
+};
+
+export type ModelIDInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
+};
+
+export enum ModelAttributeTypes {
+  binary = "binary",
+  binarySet = "binarySet",
+  bool = "bool",
+  list = "list",
+  map = "map",
+  number = "number",
+  numberSet = "numberSet",
+  string = "string",
+  stringSet = "stringSet",
+  _null = "_null"
+}
+
+export type ModelSizeInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+};
+
+export type ModelStringInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
+};
+
+export type RoomQuestion = {
+  __typename: "RoomQuestion";
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateRoomQuestionInput = {
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+};
+
+export type DeleteRoomQuestionInput = {
+  id: string;
+};
+
+export type CreateRoomUserInput = {
+  id?: string | null;
+  userId?: string | null;
+  roomId?: string | null;
+};
+
+export type ModelRoomUserConditionInput = {
+  userId?: ModelIDInput | null;
+  roomId?: ModelIDInput | null;
+  and?: Array<ModelRoomUserConditionInput | null> | null;
+  or?: Array<ModelRoomUserConditionInput | null> | null;
+  not?: ModelRoomUserConditionInput | null;
+};
+
+export type RoomUser = {
+  __typename: "RoomUser";
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateRoomUserInput = {
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+};
+
+export type DeleteRoomUserInput = {
+  id: string;
 };
 
 export type CreateRoomInput = {
@@ -61,61 +188,6 @@ export type ModelQuestionConditionInput = {
   and?: Array<ModelQuestionConditionInput | null> | null;
   or?: Array<ModelQuestionConditionInput | null> | null;
   not?: ModelQuestionConditionInput | null;
-};
-
-export type ModelStringInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
-};
-
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null"
-}
-
-export type ModelSizeInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  between?: Array<number | null> | null;
-};
-
-export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
 };
 
 export type Question = {
@@ -176,7 +248,7 @@ export type CreateVoteInput = {
 export type ModelVoteConditionInput = {
   userId?: ModelIDInput | null;
   roomId?: ModelIDInput | null;
-  questionId?: ModelStringInput | null;
+  questionId?: ModelIDInput | null;
   and?: Array<ModelVoteConditionInput | null> | null;
   or?: Array<ModelVoteConditionInput | null> | null;
   not?: ModelVoteConditionInput | null;
@@ -201,6 +273,36 @@ export type UpdateVoteInput = {
 
 export type DeleteVoteInput = {
   id: string;
+};
+
+export type ModelRoomQuestionFilterInput = {
+  id?: ModelIDInput | null;
+  roomId?: ModelIDInput | null;
+  text?: ModelStringInput | null;
+  and?: Array<ModelRoomQuestionFilterInput | null> | null;
+  or?: Array<ModelRoomQuestionFilterInput | null> | null;
+  not?: ModelRoomQuestionFilterInput | null;
+};
+
+export type ModelRoomQuestionConnection = {
+  __typename: "ModelRoomQuestionConnection";
+  items: Array<RoomQuestion | null>;
+  nextToken?: string | null;
+};
+
+export type ModelRoomUserFilterInput = {
+  id?: ModelIDInput | null;
+  userId?: ModelIDInput | null;
+  roomId?: ModelIDInput | null;
+  and?: Array<ModelRoomUserFilterInput | null> | null;
+  or?: Array<ModelRoomUserFilterInput | null> | null;
+  not?: ModelRoomUserFilterInput | null;
+};
+
+export type ModelRoomUserConnection = {
+  __typename: "ModelRoomUserConnection";
+  items: Array<RoomUser | null>;
+  nextToken?: string | null;
 };
 
 export type ModelRoomFilterInput = {
@@ -249,7 +351,7 @@ export type ModelVoteFilterInput = {
   id?: ModelIDInput | null;
   userId?: ModelIDInput | null;
   roomId?: ModelIDInput | null;
-  questionId?: ModelStringInput | null;
+  questionId?: ModelIDInput | null;
   and?: Array<ModelVoteFilterInput | null> | null;
   or?: Array<ModelVoteFilterInput | null> | null;
   not?: ModelVoteFilterInput | null;
@@ -261,10 +363,12 @@ export type ModelVoteConnection = {
   nextToken?: string | null;
 };
 
-export type ModelSubscriptionRoomFilterInput = {
+export type ModelSubscriptionRoomQuestionFilterInput = {
   id?: ModelSubscriptionIDInput | null;
-  and?: Array<ModelSubscriptionRoomFilterInput | null> | null;
-  or?: Array<ModelSubscriptionRoomFilterInput | null> | null;
+  roomId?: ModelSubscriptionIDInput | null;
+  text?: ModelSubscriptionStringInput | null;
+  and?: Array<ModelSubscriptionRoomQuestionFilterInput | null> | null;
+  or?: Array<ModelSubscriptionRoomQuestionFilterInput | null> | null;
 };
 
 export type ModelSubscriptionIDInput = {
@@ -282,14 +386,6 @@ export type ModelSubscriptionIDInput = {
   notIn?: Array<string | null> | null;
 };
 
-export type ModelSubscriptionQuestionFilterInput = {
-  id?: ModelSubscriptionIDInput | null;
-  text?: ModelSubscriptionStringInput | null;
-  roomId?: ModelSubscriptionIDInput | null;
-  and?: Array<ModelSubscriptionQuestionFilterInput | null> | null;
-  or?: Array<ModelSubscriptionQuestionFilterInput | null> | null;
-};
-
 export type ModelSubscriptionStringInput = {
   ne?: string | null;
   eq?: string | null;
@@ -305,6 +401,28 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array<string | null> | null;
 };
 
+export type ModelSubscriptionRoomUserFilterInput = {
+  id?: ModelSubscriptionIDInput | null;
+  userId?: ModelSubscriptionIDInput | null;
+  roomId?: ModelSubscriptionIDInput | null;
+  and?: Array<ModelSubscriptionRoomUserFilterInput | null> | null;
+  or?: Array<ModelSubscriptionRoomUserFilterInput | null> | null;
+};
+
+export type ModelSubscriptionRoomFilterInput = {
+  id?: ModelSubscriptionIDInput | null;
+  and?: Array<ModelSubscriptionRoomFilterInput | null> | null;
+  or?: Array<ModelSubscriptionRoomFilterInput | null> | null;
+};
+
+export type ModelSubscriptionQuestionFilterInput = {
+  id?: ModelSubscriptionIDInput | null;
+  text?: ModelSubscriptionStringInput | null;
+  roomId?: ModelSubscriptionIDInput | null;
+  and?: Array<ModelSubscriptionQuestionFilterInput | null> | null;
+  or?: Array<ModelSubscriptionQuestionFilterInput | null> | null;
+};
+
 export type ModelSubscriptionUserFilterInput = {
   id?: ModelSubscriptionIDInput | null;
   name?: ModelSubscriptionStringInput | null;
@@ -316,9 +434,63 @@ export type ModelSubscriptionVoteFilterInput = {
   id?: ModelSubscriptionIDInput | null;
   userId?: ModelSubscriptionIDInput | null;
   roomId?: ModelSubscriptionIDInput | null;
-  questionId?: ModelSubscriptionStringInput | null;
+  questionId?: ModelSubscriptionIDInput | null;
   and?: Array<ModelSubscriptionVoteFilterInput | null> | null;
   or?: Array<ModelSubscriptionVoteFilterInput | null> | null;
+};
+
+export type CreateRoomQuestionMutation = {
+  __typename: "RoomQuestion";
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateRoomQuestionMutation = {
+  __typename: "RoomQuestion";
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteRoomQuestionMutation = {
+  __typename: "RoomQuestion";
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateRoomUserMutation = {
+  __typename: "RoomUser";
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateRoomUserMutation = {
+  __typename: "RoomUser";
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteRoomUserMutation = {
+  __typename: "RoomUser";
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type CreateRoomMutation = {
@@ -423,6 +595,50 @@ export type DeleteVoteMutation = {
   updatedAt: string;
 };
 
+export type GetRoomQuestionQuery = {
+  __typename: "RoomQuestion";
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListRoomQuestionsQuery = {
+  __typename: "ModelRoomQuestionConnection";
+  items: Array<{
+    __typename: "RoomQuestion";
+    id: string;
+    roomId?: string | null;
+    text?: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetRoomUserQuery = {
+  __typename: "RoomUser";
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListRoomUsersQuery = {
+  __typename: "ModelRoomUserConnection";
+  items: Array<{
+    __typename: "RoomUser";
+    id: string;
+    userId?: string | null;
+    roomId?: string | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
 export type GetRoomQuery = {
   __typename: "Room";
   id: string;
@@ -505,6 +721,60 @@ export type ListVotesQuery = {
     updatedAt: string;
   } | null>;
   nextToken?: string | null;
+};
+
+export type OnCreateRoomQuestionSubscription = {
+  __typename: "RoomQuestion";
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateRoomQuestionSubscription = {
+  __typename: "RoomQuestion";
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteRoomQuestionSubscription = {
+  __typename: "RoomQuestion";
+  id: string;
+  roomId?: string | null;
+  text?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateRoomUserSubscription = {
+  __typename: "RoomUser";
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateRoomUserSubscription = {
+  __typename: "RoomUser";
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteRoomUserSubscription = {
+  __typename: "RoomUser";
+  id: string;
+  userId?: string | null;
+  roomId?: string | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnCreateRoomSubscription = {
@@ -613,6 +883,156 @@ export type OnDeleteVoteSubscription = {
   providedIn: "root"
 })
 export class APIService {
+  async CreateRoomQuestion(
+    input: CreateRoomQuestionInput,
+    condition?: ModelRoomQuestionConditionInput
+  ): Promise<CreateRoomQuestionMutation> {
+    const statement = `mutation CreateRoomQuestion($input: CreateRoomQuestionInput!, $condition: ModelRoomQuestionConditionInput) {
+        createRoomQuestion(input: $input, condition: $condition) {
+          __typename
+          id
+          roomId
+          text
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateRoomQuestionMutation>response.data.createRoomQuestion;
+  }
+  async UpdateRoomQuestion(
+    input: UpdateRoomQuestionInput,
+    condition?: ModelRoomQuestionConditionInput
+  ): Promise<UpdateRoomQuestionMutation> {
+    const statement = `mutation UpdateRoomQuestion($input: UpdateRoomQuestionInput!, $condition: ModelRoomQuestionConditionInput) {
+        updateRoomQuestion(input: $input, condition: $condition) {
+          __typename
+          id
+          roomId
+          text
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateRoomQuestionMutation>response.data.updateRoomQuestion;
+  }
+  async DeleteRoomQuestion(
+    input: DeleteRoomQuestionInput,
+    condition?: ModelRoomQuestionConditionInput
+  ): Promise<DeleteRoomQuestionMutation> {
+    const statement = `mutation DeleteRoomQuestion($input: DeleteRoomQuestionInput!, $condition: ModelRoomQuestionConditionInput) {
+        deleteRoomQuestion(input: $input, condition: $condition) {
+          __typename
+          id
+          roomId
+          text
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteRoomQuestionMutation>response.data.deleteRoomQuestion;
+  }
+  async CreateRoomUser(
+    input: CreateRoomUserInput,
+    condition?: ModelRoomUserConditionInput
+  ): Promise<CreateRoomUserMutation> {
+    const statement = `mutation CreateRoomUser($input: CreateRoomUserInput!, $condition: ModelRoomUserConditionInput) {
+        createRoomUser(input: $input, condition: $condition) {
+          __typename
+          id
+          userId
+          roomId
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateRoomUserMutation>response.data.createRoomUser;
+  }
+  async UpdateRoomUser(
+    input: UpdateRoomUserInput,
+    condition?: ModelRoomUserConditionInput
+  ): Promise<UpdateRoomUserMutation> {
+    const statement = `mutation UpdateRoomUser($input: UpdateRoomUserInput!, $condition: ModelRoomUserConditionInput) {
+        updateRoomUser(input: $input, condition: $condition) {
+          __typename
+          id
+          userId
+          roomId
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateRoomUserMutation>response.data.updateRoomUser;
+  }
+  async DeleteRoomUser(
+    input: DeleteRoomUserInput,
+    condition?: ModelRoomUserConditionInput
+  ): Promise<DeleteRoomUserMutation> {
+    const statement = `mutation DeleteRoomUser($input: DeleteRoomUserInput!, $condition: ModelRoomUserConditionInput) {
+        deleteRoomUser(input: $input, condition: $condition) {
+          __typename
+          id
+          userId
+          roomId
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteRoomUserMutation>response.data.deleteRoomUser;
+  }
   async CreateRoom(
     input: CreateRoomInput,
     condition?: ModelRoomConditionInput
@@ -907,6 +1327,112 @@ export class APIService {
     )) as any;
     return <DeleteVoteMutation>response.data.deleteVote;
   }
+  async GetRoomQuestion(id: string): Promise<GetRoomQuestionQuery> {
+    const statement = `query GetRoomQuestion($id: ID!) {
+        getRoomQuestion(id: $id) {
+          __typename
+          id
+          roomId
+          text
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetRoomQuestionQuery>response.data.getRoomQuestion;
+  }
+  async ListRoomQuestions(
+    filter?: ModelRoomQuestionFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListRoomQuestionsQuery> {
+    const statement = `query ListRoomQuestions($filter: ModelRoomQuestionFilterInput, $limit: Int, $nextToken: String) {
+        listRoomQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            roomId
+            text
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListRoomQuestionsQuery>response.data.listRoomQuestions;
+  }
+  async GetRoomUser(id: string): Promise<GetRoomUserQuery> {
+    const statement = `query GetRoomUser($id: ID!) {
+        getRoomUser(id: $id) {
+          __typename
+          id
+          userId
+          roomId
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetRoomUserQuery>response.data.getRoomUser;
+  }
+  async ListRoomUsers(
+    filter?: ModelRoomUserFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListRoomUsersQuery> {
+    const statement = `query ListRoomUsers($filter: ModelRoomUserFilterInput, $limit: Int, $nextToken: String) {
+        listRoomUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            userId
+            roomId
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListRoomUsersQuery>response.data.listRoomUsers;
+  }
   async GetRoom(id: string): Promise<GetRoomQuery> {
     const statement = `query GetRoom($id: ID!) {
         getRoom(id: $id) {
@@ -1115,6 +1641,168 @@ export class APIService {
     )) as any;
     return <ListVotesQuery>response.data.listVotes;
   }
+  OnCreateRoomQuestionListener(
+    filter?: ModelSubscriptionRoomQuestionFilterInput
+  ): Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateRoomQuestion">>
+  > {
+    const statement = `subscription OnCreateRoomQuestion($filter: ModelSubscriptionRoomQuestionFilterInput) {
+        onCreateRoomQuestion(filter: $filter) {
+          __typename
+          id
+          roomId
+          text
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<
+      SubscriptionResponse<
+        Pick<__SubscriptionContainer, "onCreateRoomQuestion">
+      >
+    >;
+  }
+
+  OnUpdateRoomQuestionListener(
+    filter?: ModelSubscriptionRoomQuestionFilterInput
+  ): Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateRoomQuestion">>
+  > {
+    const statement = `subscription OnUpdateRoomQuestion($filter: ModelSubscriptionRoomQuestionFilterInput) {
+        onUpdateRoomQuestion(filter: $filter) {
+          __typename
+          id
+          roomId
+          text
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<
+      SubscriptionResponse<
+        Pick<__SubscriptionContainer, "onUpdateRoomQuestion">
+      >
+    >;
+  }
+
+  OnDeleteRoomQuestionListener(
+    filter?: ModelSubscriptionRoomQuestionFilterInput
+  ): Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteRoomQuestion">>
+  > {
+    const statement = `subscription OnDeleteRoomQuestion($filter: ModelSubscriptionRoomQuestionFilterInput) {
+        onDeleteRoomQuestion(filter: $filter) {
+          __typename
+          id
+          roomId
+          text
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<
+      SubscriptionResponse<
+        Pick<__SubscriptionContainer, "onDeleteRoomQuestion">
+      >
+    >;
+  }
+
+  OnCreateRoomUserListener(
+    filter?: ModelSubscriptionRoomUserFilterInput
+  ): Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateRoomUser">>
+  > {
+    const statement = `subscription OnCreateRoomUser($filter: ModelSubscriptionRoomUserFilterInput) {
+        onCreateRoomUser(filter: $filter) {
+          __typename
+          id
+          userId
+          roomId
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<
+      SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateRoomUser">>
+    >;
+  }
+
+  OnUpdateRoomUserListener(
+    filter?: ModelSubscriptionRoomUserFilterInput
+  ): Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateRoomUser">>
+  > {
+    const statement = `subscription OnUpdateRoomUser($filter: ModelSubscriptionRoomUserFilterInput) {
+        onUpdateRoomUser(filter: $filter) {
+          __typename
+          id
+          userId
+          roomId
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<
+      SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateRoomUser">>
+    >;
+  }
+
+  OnDeleteRoomUserListener(
+    filter?: ModelSubscriptionRoomUserFilterInput
+  ): Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteRoomUser">>
+  > {
+    const statement = `subscription OnDeleteRoomUser($filter: ModelSubscriptionRoomUserFilterInput) {
+        onDeleteRoomUser(filter: $filter) {
+          __typename
+          id
+          userId
+          roomId
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<
+      SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteRoomUser">>
+    >;
+  }
+
   OnCreateRoomListener(
     filter?: ModelSubscriptionRoomFilterInput
   ): Observable<

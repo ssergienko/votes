@@ -35,12 +35,12 @@
         "GraphQLAPIIdOutput": "fwaz6s3xhzbkvo3getrt2bscse",
         "GraphQLAPIEndpointOutput": "https://vbco6nyjfrbotaelt25jecueuy.appsync-api.us-east-1.amazonaws.com/graphql"
       },
-      "lastPushTimeStamp": "2022-12-02T21:09:37.333Z",
+      "lastPushTimeStamp": "2022-12-04T09:27:02.503Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-votes-staging-201403-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apivotes"
       },
-      "lastPushDirHash": "30mAPf8NIjhYDurg46KomeAgkhU="
+      "lastPushDirHash": "H363CEDqr3nJTsNtq2U7ZbMP4nc="
     }
   }
 }

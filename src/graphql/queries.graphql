@@ -1,4 +1,54 @@
 # this is an auto generated file. This will be overwritten
+query GetRoomQuestion($id: ID!) {
+  getRoomQuestion(id: $id) {
+    id
+    roomId
+    text
+    createdAt
+    updatedAt
+  }
+}
+query ListRoomQuestions(
+  $filter: ModelRoomQuestionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRoomQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      roomId
+      text
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetRoomUser($id: ID!) {
+  getRoomUser(id: $id) {
+    id
+    userId
+    roomId
+    createdAt
+    updatedAt
+  }
+}
+query ListRoomUsers(
+  $filter: ModelRoomUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRoomUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      userId
+      roomId
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetRoom($id: ID!) {
   getRoom(id: $id) {
     id

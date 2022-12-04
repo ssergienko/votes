@@ -1,4 +1,76 @@
 # this is an auto generated file. This will be overwritten
+mutation CreateRoomQuestion(
+  $input: CreateRoomQuestionInput!
+  $condition: ModelRoomQuestionConditionInput
+) {
+  createRoomQuestion(input: $input, condition: $condition) {
+    id
+    roomId
+    text
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateRoomQuestion(
+  $input: UpdateRoomQuestionInput!
+  $condition: ModelRoomQuestionConditionInput
+) {
+  updateRoomQuestion(input: $input, condition: $condition) {
+    id
+    roomId
+    text
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteRoomQuestion(
+  $input: DeleteRoomQuestionInput!
+  $condition: ModelRoomQuestionConditionInput
+) {
+  deleteRoomQuestion(input: $input, condition: $condition) {
+    id
+    roomId
+    text
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateRoomUser(
+  $input: CreateRoomUserInput!
+  $condition: ModelRoomUserConditionInput
+) {
+  createRoomUser(input: $input, condition: $condition) {
+    id
+    userId
+    roomId
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateRoomUser(
+  $input: UpdateRoomUserInput!
+  $condition: ModelRoomUserConditionInput
+) {
+  updateRoomUser(input: $input, condition: $condition) {
+    id
+    userId
+    roomId
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteRoomUser(
+  $input: DeleteRoomUserInput!
+  $condition: ModelRoomUserConditionInput
+) {
+  deleteRoomUser(input: $input, condition: $condition) {
+    id
+    userId
+    roomId
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateRoom(
   $input: CreateRoomInput!
   $condition: ModelRoomConditionInput

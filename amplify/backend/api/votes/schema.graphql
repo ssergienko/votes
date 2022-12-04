@@ -1,3 +1,15 @@
+type RoomQuestion @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  roomId: ID
+  text: String
+}
+
+type RoomUser @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userId: ID
+  roomId: ID
+}
+
 type Room @model @auth(rules: [{allow: public}]) {
   id: ID!
 }
@@ -17,6 +29,6 @@ type Vote @model @auth(rules: [{allow: public}]) {
   id: ID!
   userId: ID!
   roomId: ID
-  questionId: String
+  questionId: ID
 }
  
